@@ -1,0 +1,17 @@
+-I./../00_src/
+./../00_src/ALU.sv
+./../00_src/regfile.sv
+./../00_src/BrComp.sv
+./../00_src/ControlUnit.sv
+./../00_src/immediate_generator.sv
+./../00_src/Instruction_Memory.sv
+./../00_src/lsu.sv
+./../00_src/singlecycle.sv
+./../00_src/sram_IS61WV25616_controller_32b_3lr.sv
+
+./../01_bench/tlib.svh
+./../01_bench/driver.sv
+./../01_bench/scoreboard.sv
+./../01_bench/lsu_tb.sv
+./conf.vlt
+-top lsu_tb
