@@ -39,7 +39,7 @@ pc_mux pc_mux (
 	.pc_next(pc_next)
 );
 
-imem imem(
+insn_mem imem(
 	.i_raddr(pc),
 	.o_rdata(instr)
 );
@@ -142,3 +142,4 @@ pc_debug pc_debug (
 );
 
 endmodule : singlecycle
+

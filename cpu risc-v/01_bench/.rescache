@@ -1,0 +1,1 @@
+{"__version__":1,"totalSize":21487,"count":9,"data":{"ALU_tb.sv":[0,5155],"BrComp_tb.sv":[0,2821],"driver.sv":[0,377],"immediate_generator_tb.sv":[0,1799],"lsu_tb.sv":[0,5281],"regfile_tb.sv":[0,2737],"scoreboard.sv":[0,1514],"tbench.sv":[0,1224],"tlib.svh":[0,579]}}

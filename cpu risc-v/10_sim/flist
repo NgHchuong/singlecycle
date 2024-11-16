@@ -1,17 +1,27 @@
 -I./../00_src/
-./../00_src/ALU.sv
-./../00_src/regfile.sv
-./../00_src/BrComp.sv
+./../00_src/a_mux.sv
+./../00_src/Adder.sv
+./../00_src/alu.sv
+./../00_src/b_mux.sv
+./../00_src/BRC.sv
 ./../00_src/ControlUnit.sv
-./../00_src/immediate_generator.sv
-./../00_src/Instruction_Memory.sv
-./../00_src/lsu.sv
+./../00_src/FullAdder.sv
+./../00_src/ImmGen.sv
+./../00_src/insn_fetch.sv
+./../00_src/pc.sv
+./../00_src/pc_debug.sv
+./../00_src/pc_gen.sv
+./../00_src/pc_mux.sv
+./../00_src/regfile.sv
+./../00_src/shifter.sv
 ./../00_src/singlecycle.sv
-./../00_src/sram_IS61WV25616_controller_32b_3lr.sv
+./../00_src/wb_mux.sv
+./../00_src/lsu.sv
+./../00_src/insn_mem.sv
 
 ./../01_bench/tlib.svh
 ./../01_bench/driver.sv
 ./../01_bench/scoreboard.sv
-./../01_bench/lsu_tb.sv
+./../01_bench/tbench.sv
 ./conf.vlt
--top lsu_tb
+-top tbench

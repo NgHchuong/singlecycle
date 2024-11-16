@@ -1,3 +1,8 @@
+/* verilator lint_off WIDTHTRUNC */
+/* verilator lint_off WIDTHEXPAND */
+`timescale 1ns / 1ps
+
+
 module a_mux(
 	 input  logic opa_sel,
     input  logic [31:0] pc,

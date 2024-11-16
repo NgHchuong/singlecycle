@@ -1,3 +1,7 @@
+/* verilator lint_off WIDTHTRUNC */
+/* verilator lint_off WIDTHEXPAND */
+`timescale 1ns / 1ps
+
 module b_mux(
 	 input  logic opb_sel,
     input  logic [31:0] instr_gen,
@@ -17,4 +21,6 @@ module b_mux(
 		end
     end
 endmodule : b_mux
+
+
 

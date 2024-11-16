@@ -1,3 +1,6 @@
+/* verilator lint_off WIDTHTRUNC */
+/* verilator lint_off WIDTHEXPAND */
+
 module alu 
 	(
 	//input declar

@@ -1,7 +1,7 @@
 # Author: Hai Cao -- cxhai.sdh221@hcmut.edu.vn
 # Copyright 2024
 
-TOP=lsu_tb
+TOP=tbench
 SEED=1
 
 ## Do NOT change the content below unless you know what you're doing

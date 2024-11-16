@@ -1,3 +1,7 @@
+/* verilator lint_off WIDTHTRUNC */
+/* verilator lint_off WIDTHEXPAND */
+`timescale 1ns / 1ps
+
 module Adder #(
   parameter Width = 8
 ) (
@@ -17,4 +21,5 @@ module Adder #(
 
   assign cOut = c[Width-1];
 
-endmodule
+endmodule : Adder
+

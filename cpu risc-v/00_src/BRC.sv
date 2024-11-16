@@ -1,3 +1,8 @@
+/* verilator lint_off WIDTHTRUNC */
+/* verilator lint_off WIDTHEXPAND */
+`timescale 1ns / 1ps
+
+
 module BRC (
  //input
   input logic [31:0] i_rs1_data, 	// Data from the first register.
