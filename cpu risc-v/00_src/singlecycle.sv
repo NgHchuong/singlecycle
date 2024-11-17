@@ -18,7 +18,13 @@ module singlecycle (
 	output logic [31:0] o_io_lcd,		//Output for driving the LCD register.
 	// input from peripherals
 	input logic [31:0]i_io_sw,   		//Input for switches.
-	input logic [3:0]i_io_btn 			//Input for buttons.
+	output logic [17:0]   SRAM_ADDR,
+  inout  wire  [15:0]   SRAM_DQ  ,
+  output logic          SRAM_CE_N,
+  output logic          SRAM_WE_N,
+  output logic          SRAM_OE_N,
+  output logic          SRAM_LB_N,
+  output logic          SRAM_UB_N
 );
 	logic [31:0] pc_next, pc, o_alu_data, instr, rs1_data, rs2_data, instr_gen, i_rd_data, i_operand_a, i_operand_b, wb_data;
 	logic [4:0]  i_rs1_addr, i_rs2_addr, i_rd_addr;
@@ -112,7 +118,6 @@ lsu lsu(
 	.i_st_data (rs2_data),
 	.i_lsu_wren(mem_wren),
 	.i_io_sw(i_io_sw),
-	.i_io_btn(i_io_btn),
 	.o_ld_data(o_ld_data),
 	.o_io_lcd(o_io_lcd), 
 	.o_io_ledg(o_io_ledg), 
@@ -124,7 +129,14 @@ lsu lsu(
 	.o_io_hex4(o_io_hex4),
 	.o_io_hex5(o_io_hex5),
 	.o_io_hex6(o_io_hex6),
-	.o_io_hex7(o_io_hex7)
+	.o_io_hex7(o_io_hex7),
+	.SRAM_ADDR(SRAM_ADDR),
+	.SRAM_DQ(SRAM_DQ)  ,
+   .SRAM_CE_N(SRAM_CE_N),
+   .SRAM_WE_N(SRAM_WE_N),
+   .SRAM_OE_N(SRAM_OE_N),
+   .SRAM_LB_N(SRAM_LB_N),
+   .SRAM_UB_N(SRAM_UB_N)
 	
 );
 
@@ -142,4 +154,3 @@ pc_debug pc_debug (
 );
 
 endmodule : singlecycle
-

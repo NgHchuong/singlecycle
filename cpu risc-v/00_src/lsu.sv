@@ -19,7 +19,15 @@ module lsu (
 	  output logic [6:0] o_io_hex4,
 	  output logic [6:0] o_io_hex5,
 	  output logic [6:0] o_io_hex6,
-	  output logic [6:0] o_io_hex7
+	  output logic [6:0] o_io_hex7,
+	 //SRAM OUTPUT
+	  output logic [17:0]   SRAM_ADDR,
+	  inout  wire  [15:0]   SRAM_DQ  ,
+	  output logic          SRAM_CE_N,
+	  output logic          SRAM_WE_N,
+	  output logic          SRAM_OE_N,
+	  output logic          SRAM_LB_N,
+	  output logic          SRAM_UB_N
 );
 
   // Memory Map Addresses
@@ -44,6 +52,11 @@ module lsu (
   logic [31:0] i_ADDR, i_WDATA, o_RDATA;
   logic [ 3:0] i_BMASK;
   logic        i_WREN, i_RDEN, o_ACK, flag;
+ // logic [17:0] SRAM_ADDR;
+  //logic [15:0] SRAM_DQ;
+  //logic  		SRAM_CE_N, SRAM_WE_N, SRAM_OE_N, SRAM_LB_N, SRAM_UB_N;
+  
+  logic  [6:0] dis_hex0_data, dis_hex1_data, dis_hex2_data, dis_hex3_data, dis_hex4_data, dis_hex5_data, dis_hex6_data, dis_hex7_data;
   
   enum int unsigned { check = 0, write = 1, read = 2, wait_wr = 3, finish = 4, reset = 5 } p_state, n_state;
 always_comb begin : next_state_logic
@@ -64,7 +77,7 @@ always_ff@(posedge i_clk or negedge i_rst) begin
 	  else
 		 p_state <= n_state;
 end
-
+	// RECALL SRAM CONTROLLER
   sram_IS61WV25616_controller_32b_3lr data_sram(
   .i_ADDR(i_ADDR),
   .i_WDATA(i_WDATA),
@@ -72,9 +85,57 @@ end
   .i_WREN(i_WREN),
   .i_RDEN(i_RDEN),
   .o_RDATA(o_RDATA), 
-  .o_ACK(o_ACK), 
+  .o_ACK(o_ACK),
+  .SRAM_UB_N(SRAM_UB_N),
+  .SRAM_LB_N (SRAM_LB_N),
+  .SRAM_ADDR(SRAM_ADDR),
+  .SRAM_CE_N (SRAM_CE_N),
+  .SRAM_DQ (SRAM_DQ),
+  .SRAM_OE_N(SRAM_OE_N),
+  .SRAM_WE_N(SRAM_WE_N),
   .i_clk(i_clk), 
   .i_reset(i_rst)
+  );
+  // RECALL APPLICATION ON 7-SEGMENT LED
+  led7_4in led_7seg0 (
+  .in (i_buffer[3:0]),
+  .i_clk (i_clk),
+  .s (dis_hex0_data)
+  );
+   led7_4in led_7seg1 (
+  .in (i_buffer[7:4]),
+  .i_clk (i_clk),
+  .s (dis_hex1_data)
+  );
+   led7_4in led_7seg2 (
+  .in (i_buffer[11:8]),
+  .i_clk (i_clk),
+  .s (dis_hex2_data)
+  );
+   led7_4in led_7seg3 (
+  .in (i_buffer[15:12]),
+  .i_clk (i_clk),
+  .s (dis_hex3_data)
+  );  
+  led7_4in led_7seg4 (
+  .in (i_buffer[19:16]),
+  .i_clk (i_clk),
+  .s (dis_hex4_data)
+  );  
+  led7_4in led_7seg5 (
+  .in (i_buffer[23:20]),
+  .i_clk (i_clk),
+  .s (dis_hex5_data)
+  );  
+  led7_4in led_7seg6 (
+  .in (i_buffer[27:24]),
+  .i_clk (i_clk),
+  .s (dis_hex6_data)
+  );
+  led7_4in led_7seg7 (
+  .in (i_buffer[31:28]),
+  .i_clk (i_clk),
+  .s (dis_hex7_data)
   );
 always_ff
 begin
@@ -168,13 +229,13 @@ end
   assign o_io_lcd  = lcd_data;
   assign o_io_ledg = ledg_data;
   assign o_io_ledr = ledr_data;
-  assign o_io_hex0 = hex0_data;
-  assign o_io_hex1 = hex1_data;
-  assign o_io_hex2 = hex2_data;
-  assign o_io_hex3 = hex3_data;
-  assign o_io_hex4 = hex4_data;
-  assign o_io_hex5 = hex5_data;
-  assign o_io_hex6 = hex6_data;
-  assign o_io_hex7 = hex7_data;
+  assign o_io_hex0 = dis_hex0_data;
+  assign o_io_hex1 = dis_hex1_data;
+  assign o_io_hex2 = dis_hex2_data;
+  assign o_io_hex3 = dis_hex3_data;
+  assign o_io_hex4 = dis_hex4_data;
+  assign o_io_hex5 = dis_hex5_data;
+  assign o_io_hex6 = dis_hex6_data;
+  assign o_io_hex7 = dis_hex7_data;
 
 endmodule : lsu
